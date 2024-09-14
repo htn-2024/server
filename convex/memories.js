@@ -8,6 +8,7 @@ export const get = query({
     return Promise.all(
       memories.map(async (memory) => ({
         ...memory,
+        mediaUrl: await ctx.storage.getUrl(memory.mediaFileId),
         recordingUrl: await ctx.storage.getUrl(memory.recordingFileId)
       }))
     )
