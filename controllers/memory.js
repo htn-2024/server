@@ -34,7 +34,30 @@ const memoryController = {
     } catch (error) {
       res.status(400).json({ error: "Failed to delete memory" });
     }
+  },
+
+  update: async (req, res) => {
+    const { id } = req.params;
+    const { title, description, music, mediaFileId, recordingFileId } = req.body;
+
+    try {
+      const updatedId = await convexClient.mutation(api.memories.update, {
+        id,
+        body: {
+          title,
+          description,
+          music,
+          mediaFileId,
+          recordingFileId
+        }
+      });
+      res.json({ updatedId });
+    } catch (error) {
+      console.error("Error updating memory:", error);
+      res.status(400).json({ error: "Failed to update memory" });
+    }
   }
+
 }
 
 
