@@ -2,7 +2,7 @@ import { api } from "../convex/_generated/api.js";
 import convexClient from "../convexClient.js";
 
 const memoryController = {
-  get: async (req, res) => {
+  get: async (_, res) => {
     const memories = await convexClient.query(api.memories.get);
     res.send(memories);
   },

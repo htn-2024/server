@@ -5,7 +5,12 @@ export const get = query({
   args: {},
   handler: async (ctx) => {
     const memories = await ctx.db.query("memories").collect();
-    return memories;
+    return Promise.all(
+      memories.map(async (memory) => ({
+        ...memory,
+        recordingUrl: await ctx.storage.getUrl(memory.recordingFileId)
+      }))
+    )
   },
 });
 

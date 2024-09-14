@@ -8,7 +8,7 @@ const uploadController = {
     const result = await fetch(uploadUrl, {
       method: "POST",
       duplex: "half",
-      headers: {"Content-Type": req.headers["content-type"]},
+      headers: { "Content-Type": req.headers["content-type"] },
       body: req
     });
 
