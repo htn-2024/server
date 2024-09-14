@@ -10,9 +10,14 @@ export const get = query({
 });
 
 export const create = mutation({
-  args: { text: v.string(), secondText: v.string() },
+  args: {
+    title: v.string(),
+    description: v.string(),
+    music: v.string(),
+    recordingFileId: v.string()
+  },
   handler: async (ctx, args) => {
-    const memoryId = await ctx.db.insert("memories", { text: args.text, secondText: args.secondText });
+    const memoryId = await ctx.db.insert("memories", args);
     return memoryId;
   }
 });
