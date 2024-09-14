@@ -8,11 +8,12 @@ const memoryController = {
   },
 
   post: async (req, res) => {
-    const { title, description, music, recordingFileId } = req.body;
+    const { title, description, music, mediaFileId, recordingFileId } = req.body;
     const memoryId = await convexClient.mutation(api.memories.create, { 
       title,
       description,
       music,
+      mediaFileId,
       recordingFileId
     });
     res.json({ memoryId });

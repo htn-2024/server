@@ -19,6 +19,7 @@ export const create = mutation({
     title: v.string(),
     description: v.string(),
     music: v.string(),
+    mediaFileId: v.string(),
     recordingFileId: v.string()
   },
   handler: async (ctx, args) => {
