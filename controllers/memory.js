@@ -4,7 +4,7 @@ import convexClient from "../convexClient.js";
 const memoryController = {
   get: async (_, res) => {
     const memories = await convexClient.query(api.memories.get);
-    res.send(memories);
+    res.json({ memories });
   },
 
   post: async (req, res) => {
@@ -15,7 +15,7 @@ const memoryController = {
       music,
       recordingFileId
     });
-    res.send(memoryId);
+    res.json({ memoryId });
   }
 }
 

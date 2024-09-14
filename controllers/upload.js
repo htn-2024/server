@@ -11,9 +11,8 @@ const uploadController = {
       headers: { "Content-Type": req.headers["content-type"] },
       body: req
     });
-
     const { storageId } = await result.json();
-    res.send(storageId);
+    res.json({ storageId });
   }
 }
 
