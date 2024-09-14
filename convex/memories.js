@@ -49,3 +49,13 @@ export const create = mutation({
     return memoryId;
   }
 });
+
+export const remove = mutation({
+  args: { id: v.id("memories") },
+  handler: async (ctx, args) => {
+    const { id } = args;
+    await ctx.db.delete(id);
+    return id;
+  },
+});
+

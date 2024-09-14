@@ -17,7 +17,19 @@ const memoryController = {
       recordingFileId
     });
     res.json({ memoryId });
+  },
+
+  delete: async (req, res) => {
+    const { id } = req.params;
+    try {
+      const deletedId = await convexClient.mutation(api.memories.remove, { id });
+      res.json({ deletedId });
+    } catch (error) {
+      res.status(400).json({ error: "Failed to delete memory" });
+    }
   }
 }
+
+
 
 export default memoryController;
