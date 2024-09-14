@@ -5,5 +5,6 @@ const memoryRouter = express.Router();
 
 memoryRouter.get("/", memoryController.get);
 memoryRouter.post("/", memoryController.post);
+memoryRouter.delete("/:id", memoryController.delete);
 
 export default memoryRouter;
