@@ -1,4 +1,5 @@
 import express from "express";
+import ngrok from "ngrok";
 import bodyParser from "body-parser";
 import memoryRouter from "./routes/memory.js";
 import uploadRouter from "./routes/upload.js";
@@ -23,4 +24,10 @@ app.use("/upload", uploadRouter);
 
 app.listen(port, () => {
   console.log(`listening on port ${port}`);
+
+  ngrok.connect(port).then(ngrokUrl => {
+    console.log(`Ngrok tunnel in: ${ngrokUrl}`);
+  }).catch(error => {
+    console.log(`Couldn't tunnel ngrok: ${error}`);
+  })
 });
