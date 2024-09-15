@@ -15,6 +15,7 @@ import type {
   FilterApi,
   FunctionReference,
 } from "convex/server";
+import type * as collections from "../collections.js";
 import type * as memories from "../memories.js";
 import type * as uploads from "../uploads.js";
 
@@ -27,6 +28,7 @@ import type * as uploads from "../uploads.js";
  * ```
  */
 declare const fullApi: ApiFromModules<{
+  collections: typeof collections;
   memories: typeof memories;
   uploads: typeof uploads;
 }>;

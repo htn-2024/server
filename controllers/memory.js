@@ -7,14 +7,21 @@ const memoryController = {
     res.json({ memories });
   },
 
+  getByCollectionId: async (req, res) => {
+    const { collectionId } = req.params;
+    const memories = await convexClient.query(api.memories.getByCollectionId, { collectionId });
+    res.json({ memories });
+  },
+
   post: async (req, res) => {
-    const { title, description, music, mediaFileId, recordingFileId } = req.body;
+    const { title, description, music, mediaFileId, recordingFileId, collectionId } = req.body;
     const memoryId = await convexClient.mutation(api.memories.create, { 
       title,
       description,
       music,
       mediaFileId,
-      recordingFileId
+      recordingFileId,
+      collectionId,
     });
     res.json({ memoryId });
   },

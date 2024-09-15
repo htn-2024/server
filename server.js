@@ -3,6 +3,7 @@ import ngrok from "ngrok";
 import bodyParser from "body-parser";
 import memoryRouter from "./routes/memory.js";
 import uploadRouter from "./routes/upload.js";
+import collectionRouter from "./routes/collection.js";
 import dotenv from "dotenv";
 import cors from "cors";
 
@@ -21,6 +22,7 @@ app.use(express.json());
 
 app.use("/memory", memoryRouter);
 app.use("/upload", uploadRouter);
+app.use("/collection", collectionRouter);
 
 app.listen(port, () => {
   console.log(`listening on port ${port}`);
