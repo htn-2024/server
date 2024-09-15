@@ -76,3 +76,31 @@ export const remove = mutation({
   },
 });
 
+export const update = mutation({
+  args: {
+    id: v.id("memories"),
+    body: v.object({
+      title: v.optional(v.string()),
+      description: v.optional(v.string()),
+      music: v.optional(v.string()),
+      mediaFileId: v.optional(v.string()),
+      recordingFileId: v.optional(v.string())
+    })
+  },
+  handler: async (ctx, args) => {
+    const { id, body } = args;
+    
+    // Remove null or undefined properties from the body object
+    Object.keys(body).forEach((key) => {
+      if (body[key] === null || body[key] === undefined) {
+        delete body[key];
+      }
+    });
+    
+    await ctx.db.patch(id, body);
+    return id;
+  }
+});
+
+
+
